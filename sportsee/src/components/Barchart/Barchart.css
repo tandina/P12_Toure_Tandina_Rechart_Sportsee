@@ -1,0 +1,53 @@
+.label{
+    color: white;
+}
+.custom-tooltip{
+    background-color: red;
+    text-align: center;
+    border: none;
+    Width:60px;
+    Height:100px;
+    padding: 5px 10px 5px 10px;
+}
+.legends ul {
+    display: flex;
+flex-direction: row;
+}
+.barLegend{
+    display: flex;
+flex-direction: row;
+align-items: baseline;
+justify-content: space-between;
+margin: 0px 30px 0px;
+}
+.bar-container{
+    height: 400px;
+    width: 773px;
+border-radius: 5px;
+background: #FBFBFB;
+box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+margin-right: 40px;
+
+}
+.barTitle{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 501;
+    font-size: 15px;
+    color: #20253A;
+}
+.weight-circle,.kcal-circle p {
+    
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+color: #74798C;
+}
+.kcal-circle {
+    margin-left: 30px;
+    color: red;
+}
+.weight-circle{
+    color: #282D30;
+}

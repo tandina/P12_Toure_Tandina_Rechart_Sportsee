@@ -1,0 +1,38 @@
+.copyright{
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    color: white;
+    padding-top: 168px;
+}
+
+.sidebar-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 84px;
+    background: #020203;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 1024px;
+    margin-left: -8px;
+    margin-top: -16px;
+    min-height: 824px;
+}
+.aside-icones-list {
+    list-style: none;
+    padding: 152px 10px 20px 10px;
+    position: absolute;
+}
+.aside-icon svg{
+    background: #FFFFFF;
+border-radius: 6px;
+padding: 6px;
+width: 32px;
+height: 32px;
+}
+.aside-icon{
+    padding: 4px;
+}
+.relative{
+    position: relative;
+}

@@ -1,0 +1,76 @@
+.logo{
+  width: 178px;
+  height: 60.93px;
+}
+.home-logo{
+  height: 144px;
+  padding: 2% 0% 2% 35%;
+}
+.bg-dark{
+  background: #020203;
+}
+.b-shadow-bar{
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.b-shadow-info{
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+border-radius: 5px;
+}
+.bg-red{
+  background: #FF0000;
+}
+.bg-sky{
+  background: #4AB8FF;
+}
+.bg-yellow{
+  background: #FDCC0C;
+}
+.bg-pink{
+  background: #FD5181;
+}
+.core-content{
+  position:  absolute;
+  display: flex;
+  flex-direction: row;
+  top: 100px;
+left: 160px;
+flex-wrap: wrap;
+width: 1024px;
+height: 796px;
+}
+.users{
+  width: 300px;
+  height: 55px;
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+align-items: center;
+padding: 200px 401px 0px;
+
+}
+.card-container{
+  display: flex;
+  flex-direction: column;
+}
+.mini-chart-container{
+  display: flex;
+flex-direction: row;
+margin-top: 30px;
+}
+@media screen and (max-width: 1080px){
+  .core-content{
+    width: 1000px;
+  }
+  .card-container{
+    padding-top: 20px;
+    flex-direction: row;
+    width: 772px;
+  }
+  .card{
+    margin: 0px 17px 0px 14px;
+    width: 170px;
+  }
+  body {
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+  }
+}

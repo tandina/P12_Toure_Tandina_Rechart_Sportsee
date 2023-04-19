@@ -1,0 +1,8 @@
+.radarChart{
+    position: relative;
+background: #282D30;
+width: 245px;
+height: 245px;
+border-radius: 5px;
+margin:0px 20px 0px;
+}

@@ -1,0 +1,55 @@
+.card{
+    background: #FBFBFB;
+box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+border-radius: 5px;
+display: flex;
+flex-direction: row;
+height: 81px;
+width: 200px;
+margin-bottom: 35px;
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+align-items: center;
+
+}
+.card img {
+    width: 15px;
+    height: 15px;
+}
+.apple img{
+    background: #fff9e1;
+border-radius: 6px;
+padding: 14px;
+}
+.poulet img{
+    background: rgba(74, 184, 255, 0.1);
+border-radius: 6px;
+padding: 14px;
+}
+.cheese img{
+    background: rgba(253, 81, 129, 0.1);
+border-radius: 6px;
+padding: 14px;
+}
+.fire img{
+    background: #ffdbdb;
+border-radius: 6px;
+padding: 14px;
+}
+.card-cat{
+    font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+margin: 0;
+margin-right: 25px;
+}
+.card-type{
+    font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+margin: 0;
+color: #74798C;
+}
