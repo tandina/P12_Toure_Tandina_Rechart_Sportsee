@@ -31,19 +31,7 @@ function Dashboard() {
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
       setIsLoading(false);
-      // if(id.id === 12 || id.id === 18){
-      //   userData(id.id)
-      // } else {
-      //   navigate("*")
-      // }
     }, [id]);
-    // useEffect(() => {
-    //   if(params.id == 12 || params.id == 18){
-    //     getFullDataFormat(params.id)
-    //   } else {
-    //     navigate("*")
-    //   }
-    // }, [])
     if (isLoading) {return <p>...loading</p>;} 
     else {
   //data mocké
