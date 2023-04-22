@@ -1,6 +1,9 @@
 import { Bike,Lift, Pool, Zen} from "../../assets/icons"
 import "./Sidebar.css"
-
+/**
+ * @function Header display header banner
+ * @returns a banner with links and disabled links
+ */
 function SideBar() {
     return (<>
     <div className="sidebar-content">

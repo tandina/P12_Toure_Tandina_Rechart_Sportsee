@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import "./Piechart.css"
 
 /**
- * @module RadarCharts to export the radar
+ * @module RadialBarChart to export the radial bar chart
  * @requires React
  * @requires recharts to import the library and the Radar model
  */

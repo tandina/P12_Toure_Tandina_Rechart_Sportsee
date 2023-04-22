@@ -1,0 +1,276 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> containers/dashboard/Dashboard.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">My React components</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-BarChart%2520to%2520export%2520the%2520barchart%2520graphic.html">BarChart to export the barchart graphic</a></li><li><a href="module-LineChart%2520to%2520export%2520the%2520LineChart%2520dynamic%2520curve%2520from%2520rechart.html">LineChart to export the LineChart dynamic curve from rechart</a></li><li><a href="module-RadarCharts%2520to%2520export%2520the%2520radar.html">RadarCharts to export the radar</a></li><li><a href="module-RadialBarChart%2520to%2520export%2520the%2520radial%2520bar%2520chart.html">RadialBarChart to export the radial bar chart</a></li></ul><h3>Global</h3><ul><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#Headerdisplayheaderbanner">Header display header banner</a></li><li><a href="global.html#Hello">Hello</a></li><li><a href="global.html#UserIdCheck">UserIdCheck</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>containers/dashboard/Dashboard.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useData } from "../../context/UserDataContext"
+import { useParams,useNavigate } from 'react-router-dom';
+import {Header, SideBar, Hello, Card, BarCharts, RadarCharts, Linechart, PieChart} from "../../components/index";
+import apple from "../../assets/mainIcones/apple.svg"
+import Cheeseburger from "../../assets/mainIcones/cheeseburger.svg"
+import Flamme from "../../assets/mainIcones/flamme.svg"
+import Poulet from "../../assets/mainIcones/poulet.svg"
+import { useEffect, useState } from "react";
+import PropTypes from 'prop-types';
+// api
+import {
+  getUserById,
+  getActivityByUserId,
+  getSessionsByUserId,
+  getPerformanceByUserId
+} from "../../service/getApi";
+
+
+/** 
+ * @function Dashboard 
+ * @param {number} id - id of current user.
+ * @returns the Dashboard display all the components, but his most important action is to switch data between mocked data an api data, to switch you need to comment the source you don't want and keep the version you want in dashboard it will automatically refresh the react context, don't forget to do the same action in graphics components, there is only hide to comment
+ * */
+function Dashboard() {
+    //data mocké
+    const { id } = useParams();
+    const { userActivity, userMainData } = useData(id);
+    console.log(id)
+    const userData = userMainData.find(user => user.id === Number(id));
+    const activityData = userActivity.find(activity => activity.userId === userData.id);
+    console.log(userData, activityData);
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+      setIsLoading(false);
+    }, [id]);
+    if (isLoading) {return &lt;p>...loading&lt;/p>;} 
+    else {
+  //data mocké
+
+
+  // //data api
+    // const { id } = useParams();
+    // const userId = id;
+    // const {
+    //   setUserMainData,
+    //   setUserActivity,
+    //   setUserAverageSessions,
+    //   setUserPerformance,
+    //   userMainData,
+    //   userActivity,
+    //   userAverageSessions,
+    //   userPerformance,
+    // } = useData(id);
+    // const [isLoading, setIsLoading] = useState(true);
+
+    // useEffect(() => {
+    //   async function fetchData() {
+    //     try {
+    //       const [userMainData, userActivity, userAverageSessions, userPerformance] = await Promise.all([
+    //         getUserById(userId),
+    //         getActivityByUserId(userId),
+    //         getSessionsByUserId(userId),
+    //         getPerformanceByUserId(userId)
+    //       ]);
+
+    //       setUserMainData(userMainData);
+    //       setUserActivity(userActivity);
+    //       setUserAverageSessions(userAverageSessions);
+    //       setUserPerformance(userPerformance);
+
+    //       setIsLoading(false);
+    //     } catch (error) {
+    //       console.error(error);
+    //     }
+    //   }
+    //   fetchData();
+    // }, [id,setUserMainData,setUserActivity,setUserAverageSessions,setUserPerformance,userId]);
+    // console.log(userActivity)
+    // const userData=userMainData;
+    // if (isLoading) {
+    //   return &lt;p>...loading&lt;/p>;
+    // } else {
+    //     // test first entry from the api
+    //     // return (
+    //     // 	&lt;>
+    //     // 		&lt;h1>{userMainData.userInfos?.firstName}&lt;/h1>
+    //     // 	&lt;/>
+    //     // );
+  //  //data Api
+
+  return (
+    &lt;>
+        &lt;Header/>
+        &lt;SideBar/>
+        &lt;div className="core-content">
+          &lt;Hello 
+            key={userData.id}
+            firstname={userData.userInfos?.firstName}
+          />
+          &lt;div className="chart-container">
+            &lt;BarCharts/>
+            &lt;div className="mini-chart-container">
+              &lt;div>&lt;Linechart/>&lt;/div>
+              &lt;div>&lt;RadarCharts/>&lt;/div>
+              &lt;div>&lt;PieChart/>&lt;/div>
+            &lt;/div>
+          &lt;/div>
+          &lt;div className="card-container">
+          &lt;Card 
+            css='apple'
+            picture={apple}
+            cardName={'Calories'}
+            cardData={userData.keyData?.calorieCount}
+            unit={'Kcal'}
+          />
+          &lt;Card 
+            css='poulet'
+            cardName={'Proteines'}
+            picture={Poulet}
+            cardData={userData.keyData?.proteinCount}
+            unit={'g'}
+          />
+          &lt;Card 
+            css='cheese'
+            cardName={'Glucides'}
+            picture={Cheeseburger}
+            cardData={userData.keyData?.carbohydrateCount}
+            unit={'g'}
+          />
+          &lt;Card 
+            css='fire'
+            cardName={'Lipides'}
+            picture={Flamme}
+            cardData={userData.keyData?.lipidCount}
+            unit={'g'}
+          />
+          &lt;/div>
+          
+        &lt;/div>
+    &lt;/>
+  );
+}}
+
+Hello.propTypes = {
+  firstname: PropTypes.string.isRequired
+};
+Card.propTypes = {
+  css: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
+  cardName: PropTypes.string.isRequired,
+  cardData: PropTypes.number,
+  unit: PropTypes.string.isRequired
+};
+
+export default Dashboard;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

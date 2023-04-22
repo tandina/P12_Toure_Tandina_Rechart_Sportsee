@@ -5,7 +5,14 @@ import { useParams } from 'react-router-dom';
 import "./Linechart.css"
 import PropTypes from 'prop-types';
 
-
+/**
+ * @module LineChart to export the LineChart dynamic curve from rechart
+ * @requires React
+ * @requires recharts to import the library and the Radar model
+ * This function is used to display the duration of dayly exercices.
+ * @param {number} id - Id number of a registered user.
+ * @returns A curved line showing the evolution of user's activity.
+ */
 const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (

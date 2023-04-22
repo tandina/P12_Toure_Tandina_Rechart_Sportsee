@@ -8,10 +8,10 @@ import { getUserById,getActivityByUserId,getSessionsByUserId,getPerformanceByUse
 import { useEffect, useState } from "react";
 
 /**
- * @module RadarCharts to export the radar
+ * @module BarChart to export the barchart graphic
  * @requires React
  * @requires recharts to import the library and the Radar model
- */
+ * */
 
 export default function BarCharts() {
   // data maocké

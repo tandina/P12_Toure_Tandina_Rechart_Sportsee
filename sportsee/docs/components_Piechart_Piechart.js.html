@@ -1,0 +1,216 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> components/Piechart/Piechart.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">My React components</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-BarChart%2520to%2520export%2520the%2520barchart%2520graphic.html">BarChart to export the barchart graphic</a></li><li><a href="module-LineChart%2520to%2520export%2520the%2520LineChart%2520dynamic%2520curve%2520from%2520rechart.html">LineChart to export the LineChart dynamic curve from rechart</a></li><li><a href="module-RadarCharts%2520to%2520export%2520the%2520radar.html">RadarCharts to export the radar</a></li><li><a href="module-RadialBarChart%2520to%2520export%2520the%2520radial%2520bar%2520chart.html">RadialBarChart to export the radial bar chart</a></li></ul><h3>Global</h3><ul><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#Headerdisplayheaderbanner">Header display header banner</a></li><li><a href="global.html#Hello">Hello</a></li><li><a href="global.html#UserIdCheck">UserIdCheck</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>components/Piechart/Piechart.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import PropTypes from 'prop-types';
+import React from 'react';
+import { RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts';
+import { useData } from "../../context/UserDataContext"
+import { useParams } from 'react-router-dom';
+import "./Piechart.css"
+
+/**
+ * @module RadialBarChart to export the radial bar chart
+ * @requires React
+ * @requires recharts to import the library and the Radar model
+ */
+
+
+export default function Piechart() {
+    const { id } = useParams();
+    const { userMainData } = useData(id);
+    // data mocké
+        //we need this code to check if the id and useId match, in the api context id is set in url
+      const userData = userMainData.find(user => user.id === Number(id));
+    // data mocké
+
+        // // data api
+        // const userData=userMainData;
+        // // data api
+    console.log(userData)
+
+      //we create an array of all propreties values of the object in todayScore, multiply by 100 to get a percentage of the number
+    const todayScore = Object.values(userData);
+    const score = todayScore[2];
+    const percent = score*100;
+
+  
+    console.log(score)
+
+    console.log(todayScore)
+
+    // with 'data" we setup all the informations required to daisplay the graph uv:100 = the total achievement, uv:percent = the actualy percentage of achievement
+    const data = [
+        {
+          name: 'full',
+          uv: 100,
+          fill: 'transparent',
+          opacity:0
+        },
+        {
+          name: 'achievement',
+          uv: percent,
+          fill: 'red',
+          }
+      
+      ];
+    return (&lt;>
+        &lt;section className='radial-chart-container'>
+            &lt;div className='radial-chart-score'>Score&lt;/div>
+            &lt;div className='radial-chart-text'>
+                &lt;h1>{percent}%&lt;/h1>
+                &lt;h2>de votre objectif&lt;/h2>
+                
+            &lt;/div> 
+            &lt;span className='circle'>&lt;/span>
+            &lt;div className='radial-chart'>
+                &lt;ResponsiveContainer width={350} height={350}>
+                    &lt;RadialBarChart 
+                        cx="50%" 
+                        cy="50%" 
+                        innerRadius="10%" 
+                        outerRadius="80%" 
+                        barSize={10} 
+                        data={data}
+                        startAngle={90}
+                        >
+                        
+                    &lt;RadialBar
+                        cornerRadius="10"
+                        minAngle={15}
+                        background={false}
+                        clockWise
+                        dataKey="uv"
+                    />
+                    &lt;/RadialBarChart>
+                &lt;/ResponsiveContainer>
+        &lt;/div>
+      &lt;/section>
+      &lt;/>
+    );
+  }
+
+  Piechart.propTypes = {
+    data: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object,
+    ]
+    ),
+    dataKey: PropTypes.number,
+  }</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

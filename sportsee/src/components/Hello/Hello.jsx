@@ -6,8 +6,7 @@ import "./Hello.css"
  * 
  * @param {Object} props - The props.
  * @param {string} props.firstname the user firstname
- * @returns 
- */
+ * @returns display in a div the user name  */
 
 function Hello(props) {
 

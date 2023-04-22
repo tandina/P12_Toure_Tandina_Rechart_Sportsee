@@ -16,10 +16,11 @@ import {
 } from "../../service/getApi";
 
 
-/** @function Dashboard */
-
-// the Dashboard display all the components, but his most important action is to switch data between mocked data an api data, to switch you need to comment the source you don't want and keep the version you want in dashboard it will automatically refresh the react context, don't forget to do the same action in graphics components, there is only hide to comment
-
+/** 
+ * @function Dashboard 
+ * @param {number} id - id of current user.
+ * @returns the Dashboard display all the components, but his most important action is to switch data between mocked data an api data, to switch you need to comment the source you don't want and keep the version you want in dashboard it will automatically refresh the react context, don't forget to do the same action in graphics components, there is only hide to comment
+ * */
 function Dashboard() {
     //data mocké
     const { id } = useParams();

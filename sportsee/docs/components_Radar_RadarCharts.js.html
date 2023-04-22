@@ -1,0 +1,238 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> components/Radar/RadarCharts.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">My React components</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-BarChart%2520to%2520export%2520the%2520barchart%2520graphic.html">BarChart to export the barchart graphic</a></li><li><a href="module-LineChart%2520to%2520export%2520the%2520LineChart%2520dynamic%2520curve%2520from%2520rechart.html">LineChart to export the LineChart dynamic curve from rechart</a></li><li><a href="module-RadarCharts%2520to%2520export%2520the%2520radar.html">RadarCharts to export the radar</a></li><li><a href="module-RadialBarChart%2520to%2520export%2520the%2520radial%2520bar%2520chart.html">RadialBarChart to export the radial bar chart</a></li></ul><h3>Global</h3><ul><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#Headerdisplayheaderbanner">Header display header banner</a></li><li><a href="global.html#Hello">Hello</a></li><li><a href="global.html#UserIdCheck">UserIdCheck</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>components/Radar/RadarCharts.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import { Radar, RadarChart,Tooltip , PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
+import "./RadarChart.css"
+import { useData } from "../../context/UserDataContext"
+import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+/**
+ * @module RadarCharts to export the radar
+ * @requires React
+ * @requires recharts to import the library and the Radar model
+ */
+
+
+export default function RadarCharts() {
+  const { id } = useParams();
+    const { userPerformance, userMainData } = useData(id);
+    console.log(id)
+        // data mocké
+        //we need this code to check if the id and useId match, in the api context id is set in url
+        const userData = userMainData.find(user => user.id === Number(id));
+        const performanceData = userPerformance.find(performance => performance.userId === userData.id);
+        console.log(performanceData.kind)
+    // data mocké
+   
+  //  // data api
+  //  const performanceData=userPerformance;
+  //  // data api
+
+  // mapping performance data keys and activity labels
+    const vf = {
+      'cardio': 'Cardio',
+      'energy': 'Energie',
+      'endurance': 'Endurance',
+      'strength': 'Force',
+      'speed': 'Vitesse',
+      'intensity': 'Intensité'
+    };
+    const activity = Object.values(performanceData.kind).map(kind => vf[kind]);
+
+    //we calculate the value and ad 10 for some space in the radar
+    var dataActivity = Object.values(performanceData.data);
+        console.log(dataActivity)
+        const space =dataActivity.length+10;  
+        console.log(space) 
+       
+        const valuesArray = performanceData.data.map(item => item.value);
+        console.log(valuesArray); // display an array of all values
+        const full = Math.max(...valuesArray.toString()) + 10;
+        console.log(full)  
+
+        const data = activity.map((subject, i) => ({
+          subject: subject,
+          A: dataActivity[i].value,
+          fullMark: full.toString(),
+        }));
+        
+    console.log(data)
+  
+    return (&lt;>
+      &lt;section className='radarChart'>
+      &lt;div>
+      &lt;ResponsiveContainer 
+        width={245} 
+        height={245}>
+        &lt;RadarChart 
+          cx="50%" 
+          cy="50%" 
+          innerRadius="10%"
+          outerRadius="70%" 
+          data={data}>
+          &lt;PolarGrid 
+            radialLines={false}
+          />
+          &lt;PolarAngleAxis 
+            dataKey="subject" 
+            tick={{ fontSize: 11, fontWeight: 400 }}
+            stroke="white"
+            dy={1} 
+            tickLine={false}
+            />
+          &lt;PolarRadiusAxis 
+            angle={30}
+							type="number"
+							tick={false}
+							axisLine={false}
+							tickCount="5"
+							line="0"
+          />
+          &lt;Tooltip 
+            position={{ y: 80,x:50 }}
+          />
+          &lt;Radar 
+          name="Performance" 
+          dataKey="A" 
+          stroke="none" 
+          fill="red" 
+          fillOpacity={0.6} 
+          />
+        &lt;/RadarChart>
+      &lt;/ResponsiveContainer>
+      &lt;/div>
+      &lt;/section>
+      
+      &lt;/>
+    );
+}
+
+RadarCharts.propTypes = {
+  data: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+  ]
+  ),
+  dataKey: PropTypes.number,
+}
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>
